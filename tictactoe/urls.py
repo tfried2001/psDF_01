@@ -19,5 +19,5 @@ from .views import welcome
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('welcome/', welcome, name='welcome'), #^starts with    ends with$  #path() changed in Django 2.0
+    path('', welcome, name='welcome'), #^starts with    ends with$  #path() changed in Django 2.0
 ]
