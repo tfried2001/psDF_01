@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
+from django.db.models import Q as orQuery
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -14,6 +15,18 @@ GAME_STATUS_CHOICES = (
 )
 
 
+class GamesQuerySet(models.QuerySet):
+    def games_for_user(self, user):
+        return self.filter(
+            orQuery(first_player=user) | orQuery(second_player=user)
+        )
+
+    def active(self):
+        return self.filter(
+            orQuery(status='F') | orQuery(status='S')
+        )
+
+
 @python_2_unicode_compatible
 class Game(models.Model):
     first_player = models.ForeignKey(
@@ -25,6 +38,8 @@ class Game(models.Model):
     last_active = models.DateTimeField(auto_now=True)
     status = models.CharField(
         default='F', max_length=1, choices=GAME_STATUS_CHOICES)
+
+    objects = GamesQuerySet.as_manager()
 
     def __str__(self):
         return "{0} vs {1}".format(
