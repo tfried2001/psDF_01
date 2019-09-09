@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q as orQuery
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -14,15 +14,16 @@ GAME_STATUS_CHOICES = (
     ('D', 'Draw'),
 )
 
+
 class GamesQuerySet(models.QuerySet):
     def games_for_user(self, user):
         return self.filter(
-            Q(first_player = user) | Q(second_player = user)
+            orQuery(first_player=user) | orQuery(second_player=user)
         )
 
     def active(self):
         return self.filter(
-            Q(status='F') | Q(status='S')
+            orQuery(status='F') | orQuery(status='S')
         )
 
 

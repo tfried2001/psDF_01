@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <ul>
+        Your Games:
+        {% for m in myGames %}
+        <li>Game {{ m.id }}: {{ m.first_player }} vs {{ m.second_player }}</li>
+        {% endfor %}
+        <br>
+        Your Active Games:
+        {% for g in activeGames %}
+        <li>Game {{ g.id }}: {{ g.first_player }} vs {{ g.second_player }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
