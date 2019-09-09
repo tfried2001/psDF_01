@@ -5,6 +5,8 @@
 # *.[oa]
 # *~
 
+# Grabbed from github.com/github/gitignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
