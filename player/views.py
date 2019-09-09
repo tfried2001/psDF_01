@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from django.contrib.auth.decorators import login_required
+from .forms import InvitationForm
 from gameplay.models import Game
 
 # Create your views here.
@@ -13,3 +14,10 @@ def home(request):
 
     return render(request, 'player/home.html',
                   {'activeGames': active_games, 'myGames': my_games})
+
+
+@login_required
+def new_invitation(request):
+    form = InvitationForm()
+    return render(request, 'player/new_invitation_form.html', {'form': form})
+    
