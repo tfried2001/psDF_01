@@ -13,6 +13,16 @@
         {% for g in activeGames %}
         <li>Game {{ g.id }}: {{ g.first_player }} vs {{ g.second_player }}</li>
         {% endfor %}
+        <br>
+        Received Invitations:
+        {% for r in myInvitations %}
+        <li>{{ r }}</li>
+        {% endfor %}
+        <br>
+        Sent Invitations:
+        {% for s in sentInvitations %}
+        <li>{{ s }}</li>
+        {% endfor %}
     </ul>
 
     <a href="{% url 'player_new_invitation' %}">
