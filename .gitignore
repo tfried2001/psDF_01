@@ -16,6 +16,13 @@ __pycache__/
 *.manifest
 *.spec
 
+# venv Virtual Environments (clashes happen syncing between win/linux environments)
+psDF/
+# For venv compatibility, listing packages here:
+# python -m venv psDF
+# python -m pip install django
+# python -m pip install pylint
+
 # Local History VSCode Extension
 .history/
 
