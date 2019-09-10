@@ -12,13 +12,13 @@ from gameplay.models import Game
 def home(request):
     my_games = Game.objects.games_for_user(request.user)
     active_games = my_games.active()
-    my_invitations = Invitation.objects.my_invitations(request.user)
+    received_invitations = Invitation.objects.received_invitations(request.user)
     sent_invitations = Invitation.objects.sent_invitations(request.user)
 
     return render(request, 'player/home.html',
                   {'activeGames': active_games,
                   'myGames': my_games,
-                  'myInvitations': my_invitations,
+                  'receivedInvitations': received_invitations,
                   'sentInvitations': sent_invitations})
 
 

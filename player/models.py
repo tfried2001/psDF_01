@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class InvitationQuerySet(models.QuerySet):
-    def my_invitations(self, user):
+    def received_invitations(self, user):
         return self.filter(
             orQuery( from_user = user )
         )
