@@ -1,31 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome, {{ user.username }}</h1>
+<h1>Welcome, {{ user.username }}</h1>
 
-    <ul>
-        Your Games:
-        {% for m in myGames %}
-        <li>Game {{ m.id }}: {{ m.first_player }} vs {{ m.second_player }}</li>
-        {% endfor %}
-        <br>
-        Your Active Games:
-        {% for g in activeGames %}
-        <li>Game {{ g.id }}: {{ g.first_player }} vs {{ g.second_player }}</li>
-        {% endfor %}
-        <br>
-        Received Invitations:
-        {% for r in receivedInvitations %}
-        <li>{{ r }}</li>
-        {% endfor %}
-        <br>
-        Sent Invitations:
-        {% for s in sentInvitations %}
-        <li>{{ s }}</li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Your Games:</h3>
+        <ul>
+            {% for m in myGames %}
+            <li>Game {{ m.id }}: {{ m.first_player }} vs {{ m.second_player }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Your Active Games:</h3>
+        <ul>
+            {% for g in activeGames %}
+            <li>Game {{ g.id }}: {{ g.first_player }} vs {{ g.second_player }}</li>
+            {% endfor %}
+        </ul>
+        <p>Click below to invite someone to play!</p>
+        <p>
+            <a class="btn btn-primary" href="{% url 'player_new_invitation' %}">
+                Start a game
+            </a>
+        </p>
+    </div>
+    <div class="col-md-6">
+        <h3>Received Invitations:</h3>
+        {% if receivedInvitations %}
+        <div class="list-group">
+            {% for r in receivedInvitations %}
+            <a class="list-group-item" href="{% url 'player_accept_invitation' id=r.id %}">
+                {{ r.from_user.username }} has invited you to a game.
+            </a>
+            {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+        <p>You have no received invitations.</p>
+        {% endif %}
+        {% if sentInvitations %}
+        <h3>Sent Invitations:</h3>
+        <div class="list-group">
+                {% for s in sentInvitations %}
+                <a class="list-group-item" href="">Id: {{ s.id }} From: {{ s.from_user }} To: {{ s.to_user }} Message: {{ s.message }}</a>
+                {% endfor %}
+        </div>
+        {% else %}
+        <p>You have not sent any invitations.</p>
+        {% endif %}
+    </div>
+</div>
 
-    <a href="{% url 'player_new_invitation' %}">
-        Invite another user to play a game
-    </a>
-{% endblock %}
+{% endblock content %}
