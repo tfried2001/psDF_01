@@ -21,6 +21,7 @@ psDF/
 # For venv compatibility, listing packages here:
 # python -m venv psDF
 # python -m pip install django
+# python -m pip install django-crispy-forms
 # python -m pip install pylint
 
 # Local History VSCode Extension
