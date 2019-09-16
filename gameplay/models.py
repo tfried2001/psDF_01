@@ -3,6 +3,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.db.models import Q as orQuery
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 
@@ -40,6 +41,9 @@ class Game(models.Model):
         default='F', max_length=1, choices=GAME_STATUS_CHOICES)
 
     objects = GamesQuerySet.as_manager()
+
+    def get_absolute_url(self):
+        return reverse('gameplay_detail', args=[self.id])
 
     def __str__(self):
         return "{0} vs {1}".format(

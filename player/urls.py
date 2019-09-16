@@ -12,5 +12,5 @@ urlpatterns = [
         LogoutView.as_view(),
         name='player_logout'),
     url('new_invitation', new_invitation, name='player_new_invitation'),
-    url('accept_invitation/(?P<id>\d+)/', accept_invitation, name="player_accept_invitation")
+    url(r'accept_invitation/(?P<id>\d+)/', accept_invitation, name="player_accept_invitation")
 ]
