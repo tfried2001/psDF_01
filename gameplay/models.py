@@ -17,6 +17,7 @@ GAME_STATUS_CHOICES = (
 
 BOARD_SIZE = 3
 
+
 class GamesQuerySet(models.QuerySet):
     def games_for_user(self, user):
         return self.filter(
@@ -54,6 +55,15 @@ class Game(models.Model):
     def is_users_move(self, user):
         return (user == self.first_player and self.status == 'F') or\
             (user == self.second_player and self.status == 'S')
+
+    def new_move(self):
+        """ returns a new move object with player, game, and count preset"""
+        if self.status not in 'FS':
+            raise ValueError("Cannot make move on finished game")
+        return Move(
+            game=self,
+            by_first_player=self.status == 'F'
+        )
 
     def get_absolute_url(self):
         return reverse('gameplay_detail', args=[self.id])
