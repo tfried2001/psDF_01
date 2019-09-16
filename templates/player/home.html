@@ -10,15 +10,15 @@
 <div class="row">
     <div class="col-md-6">
         <h3>Your Games:</h3>
-        <ul>
+        <ul class="list-group">
             {% for m in myGames %}
-            <li>Game {{ m.id }}: {{ m.first_player }} vs {{ m.second_player }}</li>
+            <a class="list-group-item" href="{{ m.get_absolute_url }}">{{ m.first_player }} vs {{ m.second_player }}</a>
             {% endfor %}
         </ul>
         <h3>Your Active Games:</h3>
-        <ul>
+        <ul class="list-group">
             {% for g in activeGames %}
-            <li>Game {{ g.id }}: {{ g.first_player }} vs {{ g.second_player }}</li>
+            <a class="list-group-item" href="{{ g.get_absolute_url }}">{{ g.first_player }} vs {{ g.second_player }}</a>
             {% endfor %}
         </ul>
         <p>Click below to invite someone to play!</p>
@@ -46,7 +46,7 @@
         <h3>Sent Invitations:</h3>
         <div class="list-group">
                 {% for s in sentInvitations %}
-                <a class="list-group-item" href="">Id: {{ s.id }} From: {{ s.from_user }} To: {{ s.to_user }} Message: {{ s.message }}</a>
+                <a class="list-group-item" href="{{ s.get_absolute_url }}">Id: {{ s.id }} From: {{ s.from_user }} To: {{ s.to_user }} Message: {{ s.message }}</a>
                 {% endfor %}
         </div>
         {% else %}
