@@ -2,6 +2,7 @@ from django.db import models
 
 from django.db.models import Q as orQuery
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 
@@ -22,3 +23,6 @@ class Invitation(models.Model):
         verbose_name="Optional Message",
         help_text="It's always nice to add a friendly message!",)
     timestamp = models.DateTimeField(auto_now_add=True,)
+
+    def get_absolute_url(self):
+        return reverse('gameplay_detail', args=[self.id])
