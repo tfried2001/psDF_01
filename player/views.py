@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from django.views import generic
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -56,7 +57,7 @@ def accept_invitation(request, id):
                       {'invitation': invitation}
                       )
 
-class LoginView(CreateView):
+class LoginView(generic.FormView):
     form_class = LoginForm
     success_url = reverse_lazy('player_home')
     template_name = 'player/login_form.html'

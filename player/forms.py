@@ -26,7 +26,7 @@ class RegistrationForm(UserCreationForm):
             'password1',
             'password2',
             ButtonHolder(
-                Submit('register', 'Register', css_class='btn btn-success')
+                Submit('register', 'Register', css_class='btn-success')
             )
         )
 
@@ -35,10 +35,11 @@ class LoginForm(AuthenticationForm):
         super(LoginForm, self).__init__(*args, **kwargs)
 
         self.helper = FormHelper()
+        self.helper.form_action = 'player_login'
         self.helper.layout = Layout(
             'username',
             'password',
             ButtonHolder(
-                Submit('login', 'Login', css_class='btn btn-success')
+                Submit('login', 'Login', css_class='btn-success')
             )
         )
