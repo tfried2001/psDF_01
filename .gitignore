@@ -30,3 +30,7 @@ psDF/
 
 # Useful Powershell line for removing cached files that hadn't yet been added to ignore
 # git ls-files -c '*/__pycache__/*' | %{git rm --cached $_}
+
+# Useful URLs
+# https://django-crispy-forms.readthedocs.io/en/latest/filters.html#using-crispy-tag-because-it-rocks
+# https://gswd-a-crash-course-pycon-2014.readthedocs.io/en/latest/authviews.html

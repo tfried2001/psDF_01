@@ -2,12 +2,13 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Login
+    Signup | {{ block.super }}
 {% endblock %}
 
 {% block content %}
 
-        <p>Please login.</p>
+        <p>Please fill in the form below to create an account.</p>
+
         {% crispy form %}
 
 {% endblock %}
